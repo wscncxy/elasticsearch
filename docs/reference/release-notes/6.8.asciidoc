@@ -1,5 +1,38 @@
+[[release-notes-6.8.10]]
+== {es} version 6.8.10
+
+[float]
+=== Bug fixes
+
+Infra/Logging::
+* SlowLoggers using single logger {pull}56708[#56708] (issue: {issue}56171[#56171])
+
+Machine Learning::
+* Fix delete_expired_data/nightly maintenance when many model snapshots need deleting {pull}57041[#57041] (issue: {issue}47103[#47103])
+
+Search::
+* Ensure search contexts are removed on index delete {pull}56335[#56335]
+* Fix validate query listener invocation bug {pull}56157[#56157]
+
+[[upgrade-6.8.10]]
+[float]
+=== Upgrades
+
+Infra/Packaging::
+* Upgrade bundled jdk to 14.0.1 {pull}57233[#57233]
+
+Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
+
 [[release-notes-6.8.9]]
 == {es} version 6.8.9
+
+[float]
+=== Known issues
+* Slow loggers can cause Log4j loggers to leak over time. When a new index is created, a new Log4j logger is associated with it. However, when an index is deleted, Log4j keeps an internal reference to its loggers that results in a memory leak {pull}57228[#57228] (issue: {issue}56171[#56171])
++
+This issue is fixed in Elasticsearch 6.8.10 and 7.7.1.
+
+Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
 
 [[enhancement-6.8.9]]
 [float]
@@ -54,6 +87,15 @@ Engine::
 [[release-notes-6.8.8]]
 == {es} version 6.8.8
 
+
+[float]
+=== Known issues
+* Slow loggers can cause Log4j loggers to leak over time. When a new index is created, a new Log4j logger is associated with it. However, when an index is deleted, Log4j keeps an internal reference to its loggers that results in a memory leak {pull}57228[#57228] (issue: {issue}56171[#56171])
++
+This issue is fixed in Elasticsearch 6.8.10 and 7.7.1.
+
+Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
+
 [[bug-6.8.8]]
 [float]
 === Bug fixes
@@ -90,6 +132,14 @@ Infra/Core::
 
 [[release-notes-6.8.7]]
 == {es} version 6.8.7
+
+[float]
+=== Known issues
+* Slow loggers can cause Log4j loggers to leak over time. When a new index is created, a new Log4j logger is associated with it. However, when an index is deleted, Log4j keeps an internal reference to its loggers that results in a memory leak {pull}57228[#57228] (issue: {issue}56171[#56171])
++
+This issue is fixed in Elasticsearch 6.8.10 and 7.7.1.
+
+Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
 
 [discrete]
 [[bug-6.8.7]]
@@ -141,6 +191,12 @@ Infra/Packaging::
 
 Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
 
+[float]
+=== Known issues
+* Slow loggers can cause Log4j loggers to leak over time. When a new index is created, a new Log4j logger is associated with it. However, when an index is deleted, Log4j keeps an internal reference to its loggers that results in a memory leak {pull}57228[#57228] (issue: {issue}56171[#56171])
++
+This issue is fixed in Elasticsearch 6.8.10 and 7.7.1.
+
 [[enhancement-6.8.6]]
 [float]
 === Enhancements
@@ -184,6 +240,12 @@ Reindex::
 == {es} version 6.8.5
 
 Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
+
+[float]
+=== Known issues
+* Slow loggers can cause Log4j loggers to leak over time. When a new index is created, a new Log4j logger is associated with it. However, when an index is deleted, Log4j keeps an internal reference to its loggers that results in a memory leak {pull}57228[#57228] (issue: {issue}56171[#56171])
++
+This issue is fixed in Elasticsearch 6.8.10 and 7.7.1.
 
 [[enhancement-6.8.5]]
 [float]
@@ -314,6 +376,8 @@ Engine::
 
 [[release-notes-6.8.3]]
 == {es} version 6.8.3
+
+Also see <<breaking-changes-6.8,Breaking changes in 6.8>>.
 
 [[enhancement-6.8.3]]
 [float]
@@ -567,5 +631,3 @@ SQL::
 Security::
 * Remove dynamic objects from security index {pull}40499[#40499] (issue: {issue}35460[#35460])
 * Add granular API key privileges {pull}41488[#41488] (issue: {issue}40031[#40031])
-
-
